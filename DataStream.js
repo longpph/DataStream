@@ -10,19 +10,11 @@ const rawUsers = [
     { id: 4, name: "David", role: "GUEST", email: "david@mail.com", totalSpent: 50 }
 ];
 
-// LỖI THIẾT KẾ: Khai báo nhiều biến tạm, sử dụng cấu trúc điều khiển mệnh lệnh dài dòng.
-let vipEmails = [];
-let totalVipRevenue = 0;
+const modernVipEmails = rawUsers.filter(user => user.role === "VIP").map(user => user.email);
+const modernTotalRevenue = rawUsers.filter(user => user.role === "VIP").reduce((total, user) => total +user.totalSpent, 0);
+console.log("Emails:", modernVipEmails);
+console.log("Total Revenue:", modernTotalRevenue);
 
-for (let i = 0; i < rawUsers.length; i++) {
-    if (rawUsers[i].role === "VIP") {
-        vipEmails.push(rawUsers[i].email);
-        totalVipRevenue += rawUsers[i].totalSpent;
-    }
-}
-
-console.log("Emails:", vipEmails);
-console.log("Total Revenue:", totalVipRevenue);
 
 // --- KHU VỰC THỰC HÀNH CỦA HỌC VIÊN ---
 // NHIỆM VỤ: Hãy xóa bỏ hoàn toàn vòng lặp `for` và các biến `let` tạm thời ở trên.
